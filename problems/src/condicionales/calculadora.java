@@ -10,4 +10,19 @@ package condicionales;
  */
 public class calculadora {
     
+    public static void main(String[] args) {
+        char data;
+        int suma, resta, multi, div;
+        
+        switch (data) {
+            case 's':
+                
+                break;
+            default:
+                throw new AssertionError();
+        }
+
+        
+    }
+    
 }
