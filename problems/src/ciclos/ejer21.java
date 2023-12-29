@@ -10,25 +10,28 @@ import java.util.Scanner;
  *
  * @author LUIS
  */
-public class ejer7 {
+public class ejer21 {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         
-        int numero, conteo = 0, contador = 0;
+        int numero;
+        boolean negativo = false;
         
-        do {            
-            System.out.print("Ingrese un numero: ");
+        for (int i = 0; i < 10; i++) {
+            System.out.print("Ingrse un numero: ");
             numero = s.nextInt();
             
-            if (numero >= 0) {
-                conteo += numero;
-                contador++;
+            if (numero < 0) {
+                negativo = true;
             }
             
-        } while (numero >= 0);
+        }
         
-        double promedio = conteo / contador; // Realiza la división con uno de los operandos como double para obtener un resultado decimal
-        System.out.println("El promedio es: " + promedio);
+        if (negativo == true) {
+            System.out.println("Se ha introducido un negativo a la lista");
+        } else {
+            System.out.println("No se ha introducido un negativo a la lista");
+        }
         
     }
 }
