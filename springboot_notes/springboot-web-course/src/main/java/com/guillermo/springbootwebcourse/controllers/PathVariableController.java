@@ -2,7 +2,9 @@ package com.guillermo.springbootwebcourse.controllers;
 
 import com.guillermo.springbootwebcourse.models.UserModel;
 import com.guillermo.springbootwebcourse.models.dto.ParamDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -14,6 +16,12 @@ public class PathVariableController {
 
     @Value("${token.auth}")
     private String usertoken;
+
+    @Value("${nombre.auth}")
+    private String nombreAuth;
+
+    @Autowired
+    private Environment env;
 
     @GetMapping("/test/{message}")  // la ruta de variable es obligatoria
     public ParamDTO test(@PathVariable String message) {
@@ -40,7 +48,11 @@ public class PathVariableController {
     public Map<String, Object> value(@Value("${number.auth}") String numberAuth) {
         Map<String,Object> json = new HashMap<>();
         json.put("usertoken", usertoken);
-        json.put("numberAuth", numberAuth);
+        json.put("numberAuth", Integer.parseInt(numberAuth));
+        json.put("nombreAuth", nombreAuth);
+        json.put("message", env.getProperty("nombre.auth"));
+        json.put("numberAuth2", env.getProperty("number.auth", Integer.class));
+
         return json;
     }
 
