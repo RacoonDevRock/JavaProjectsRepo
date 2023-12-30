@@ -11,5 +11,8 @@
     <span th:if="${userModel.email}" th:text="${userModel.email}"></span>
     <span th:if="${userModel.email.isEmpty()}" th:text="${'no tiene email'}"></span>
 
+    <a th:href="@{/list}">ver listado</a>
+    <a th:href="@{'/params/foo?message=macuebo'}">titulo</a>
+
 </body>
 </html>
