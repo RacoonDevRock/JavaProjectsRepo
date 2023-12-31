@@ -81,6 +81,7 @@ public class IKeycloakServiceImpl implements IKeycloakService {
             RealmResource realmResource = KeycloakProvider.getRealmResource();
 //            AHORA DEBEMOS EXTRAER TODOS LOS ROLES DEL JWT, PARA PODER ASIGNARLOS POSTERIORMENTE
             List<RoleRepresentation> roleRepresentationList = null;
+
             if (userDTO.roles() == null || userDTO.roles().isEmpty()) {
                 roleRepresentationList = List.of(realmResource.roles().get("user").toRepresentation()); // por defecto todos usuario tendra role de usuario tendran rol de usuario
             } else {    // en caso SI se especifico el rol debemos asignarlo
