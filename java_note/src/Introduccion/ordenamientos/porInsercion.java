@@ -1,4 +1,4 @@
-package ordenamientos;
+package Introduccion.ordenamientos;
 
 import java.util.Scanner;
 
