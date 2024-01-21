@@ -1,4 +1,4 @@
-package poo.CafeElNegrito;
+package poo.upao.CafeElNegrito;
 
 public class MedNormal extends ComplementosMedida {
     Cafe bebida;

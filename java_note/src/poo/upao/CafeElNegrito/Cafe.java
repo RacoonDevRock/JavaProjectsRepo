@@ -1,4 +1,4 @@
-package poo.CafeElNegrito;
+package poo.upao.CafeElNegrito;
 
 public abstract class Cafe {
     

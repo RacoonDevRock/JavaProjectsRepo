@@ -1,5 +1,4 @@
-
-package poo.CafeElNegrito;
+package poo.upao.CafeElNegrito;
 
 
 //Extiende la clase cafe para asi poder intercambiar los complementos

@@ -1,5 +1,4 @@
-
-package poo.CafeElNegrito;
+package poo.upao.CafeElNegrito;
 
 //
 public class Expreso extends Cafe{

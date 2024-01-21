@@ -1,4 +1,4 @@
-package poo.ejer1_introduction;
+package poo.upao.ejer1_introduction;
 
 public class Cuadrado {
     public double lado;
