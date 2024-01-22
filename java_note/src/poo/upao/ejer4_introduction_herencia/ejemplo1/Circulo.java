@@ -1,4 +1,4 @@
-package poo.ejer4_introduction_herencia.ejemplo1;
+package poo.upao.ejer4_introduction_herencia.ejemplo1;
 
 // Un Circulo es una especializaciónde Figura.
 public class Circulo/*(SubClase)*/ extends Figura/*(SuperClase)*/ {

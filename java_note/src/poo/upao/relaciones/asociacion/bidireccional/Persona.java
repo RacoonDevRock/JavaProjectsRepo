@@ -1,4 +1,4 @@
-package poo.relaciones.asociacion.bidireccional;
+package poo.upao.relaciones.asociacion.bidireccional;
 
 import java.util.Arrays;
 

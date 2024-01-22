@@ -1,4 +1,4 @@
-package poo.Farmacia;
+package poo.upao.Farmacia;
 
 import java.io.*;
 import java.util.*;

@@ -1,4 +1,4 @@
-package poo.Workers;
+package poo.upao.Workers;
 
 public class Pruebita{
   public static void main(String[] args){

@@ -1,4 +1,4 @@
-package poo.relaciones.asociacion.unidireccional;
+package poo.upao.relaciones.asociacion.unidireccional;
 
 public class Cliente {
     private String dni;

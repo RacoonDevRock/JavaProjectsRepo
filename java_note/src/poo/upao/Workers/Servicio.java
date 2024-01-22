@@ -1,4 +1,4 @@
-package poo.Workers;
+package poo.upao.Workers;
 
 public class Servicio extends Trabajador{
     private String Nomb_Area;

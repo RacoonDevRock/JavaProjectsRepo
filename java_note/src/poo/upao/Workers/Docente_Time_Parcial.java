@@ -1,4 +1,4 @@
-package poo.Workers;
+package poo.upao.Workers;
 
 public class Docente_Time_Parcial extends Docentes{
     private double Salario_h;

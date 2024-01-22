@@ -1,4 +1,4 @@
-package poo.introduction;
+package poo.upao.introduction;
 
 public class PruebaCirculo {
     public static void main(String[ ] args) {

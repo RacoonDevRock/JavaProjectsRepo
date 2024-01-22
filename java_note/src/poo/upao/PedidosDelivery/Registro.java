@@ -1,4 +1,4 @@
-package poo.PedidosDelivery;
+package poo.upao.PedidosDelivery;
 
 //Llamamos a las librerias y estas agrupan al conjunto de clases e interfaces necesarios para procesar los archivos. 
 import java.util.*;

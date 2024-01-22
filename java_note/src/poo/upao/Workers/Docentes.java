@@ -1,4 +1,4 @@
-package poo.Workers;
+package poo.upao.Workers;
 
 public abstract class Docentes extends Trabajador{
   

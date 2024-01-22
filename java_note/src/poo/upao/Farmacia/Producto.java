@@ -1,4 +1,4 @@
-package poo.Farmacia;
+package poo.upao.Farmacia;
 
 public class Producto implements Comparable {
 

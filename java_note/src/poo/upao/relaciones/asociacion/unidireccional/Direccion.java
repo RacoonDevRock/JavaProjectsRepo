@@ -1,4 +1,4 @@
-package poo.relaciones.asociacion.unidireccional;
+package poo.upao.relaciones.asociacion.unidireccional;
 
 public class Direccion {
     private int numero;

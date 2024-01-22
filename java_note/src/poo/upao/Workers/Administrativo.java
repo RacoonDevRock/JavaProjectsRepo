@@ -1,4 +1,4 @@
-package poo.Workers;
+package poo.upao.Workers;
 
 public class Administrativo extends Trabajador{
     private String Nomb_Off;

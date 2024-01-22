@@ -1,4 +1,4 @@
-package poo.ejer3_introduction;
+package poo.upao.ejer3_introduction;
 
 public class Libro {
     private double codigo;

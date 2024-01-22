@@ -1,4 +1,4 @@
-package poo.Workers;
+package poo.upao.Workers;
 
 public abstract class  Trabajador {
   private String Nomb_Emp;

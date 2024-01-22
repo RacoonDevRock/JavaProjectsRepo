@@ -1,4 +1,4 @@
-package poo.TeatroBoleteria;
+package poo.upao.TeatroBoleteria;
 
 public class Cliente {
 

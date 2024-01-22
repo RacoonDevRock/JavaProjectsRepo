@@ -1,4 +1,4 @@
-package poo.ejer4_introduction_herencia.ejemplo1;
+package poo.upao.ejer4_introduction_herencia.ejemplo1;
 
 // Una Figura es una generalizaciónde Circulo
 public class Figura {

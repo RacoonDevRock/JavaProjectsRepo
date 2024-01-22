@@ -1,4 +1,4 @@
-package poo.ejer2_introduction;
+package poo.upao.ejer2_introduction;
 
 public class PruebaCirculo {
     public static void main(String[] args) {

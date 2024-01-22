@@ -1,4 +1,4 @@
-package poo.relaciones.asociacion.unidireccional;
+package poo.upao.relaciones.asociacion.unidireccional;
 
 public class PruebaRelacionUnidireccional {
     public static void main(String[] args) {

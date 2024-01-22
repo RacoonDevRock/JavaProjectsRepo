@@ -1,4 +1,4 @@
-package poo.TeatroBoleteria;
+package poo.upao.TeatroBoleteria;
 
 //qué metodos seran usados
 public interface QueueADT<T> {

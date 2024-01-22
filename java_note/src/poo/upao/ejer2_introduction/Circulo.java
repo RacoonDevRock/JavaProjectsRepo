@@ -1,4 +1,4 @@
-package poo.ejer2_introduction;
+package poo.upao.ejer2_introduction;
 
 public class Circulo {
     private double radio;   // variable de instancia

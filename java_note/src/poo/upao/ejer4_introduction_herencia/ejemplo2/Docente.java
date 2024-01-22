@@ -1,4 +1,4 @@
-package poo.ejer4_introduction_herencia.ejemplo2;
+package poo.upao.ejer4_introduction_herencia.ejemplo2;
 
 public class Docente extends Persona {
     private String especialidad;

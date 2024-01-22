@@ -1,4 +1,4 @@
-package poo.introduction;
+package poo.upao.introduction;
 
 public class Circulo {  // clase -> circulo, representa un conjunto de entidades con propiedades enc comun
 // la clase define la estructura y comportamiento de un objeto, a esto se le llama INSTANCIA DE CLASE

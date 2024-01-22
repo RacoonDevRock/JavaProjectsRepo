@@ -1,4 +1,4 @@
-package poo.PedidosDelivery;
+package poo.upao.PedidosDelivery;
 
 public class Repartidor {
   private String Nom_rep;

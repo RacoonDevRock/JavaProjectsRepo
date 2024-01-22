@@ -1,4 +1,4 @@
-package poo.PedidosDelivery;
+package poo.upao.PedidosDelivery;
 
 public class Pedido {
   private Cliente clie;

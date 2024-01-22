@@ -1,4 +1,4 @@
-package poo.TeatroBoleteria;
+package poo.upao.TeatroBoleteria;
 //como se implementan esos metodos de la interface
 public class LinkedQueue<T> implements QueueADT<T> {
     

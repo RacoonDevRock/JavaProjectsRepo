@@ -1,4 +1,4 @@
-package poo.Farmacia;
+package poo.upao.Farmacia;
 
 public class Venta{
   private int cat_prod_vent;

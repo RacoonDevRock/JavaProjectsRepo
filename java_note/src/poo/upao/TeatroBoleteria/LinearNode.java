@@ -1,4 +1,4 @@
-package poo.TeatroBoleteria;
+package poo.upao.TeatroBoleteria;
 
 public class LinearNode<T> { //<T>Generico para reutilizar code donde no tiene // restricciones de denominación.
    //Variables tipo private

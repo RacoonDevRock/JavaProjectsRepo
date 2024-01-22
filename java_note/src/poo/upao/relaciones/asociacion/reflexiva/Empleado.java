@@ -1,4 +1,4 @@
-package poo.relaciones.asociacion.reflexiva;
+package poo.upao.relaciones.asociacion.reflexiva;
 
 public class Empleado {
     private Empleado jefe;  // Un Empleado puede tener un jefe.
