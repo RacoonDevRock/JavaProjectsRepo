@@ -1,4 +1,4 @@
-package DemoLinkedStack;
+package structure_data.DemoLinkedStack;
 
 public class LinearNode<T> { //elemento generico
 

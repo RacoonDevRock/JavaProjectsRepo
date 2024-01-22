@@ -1,4 +1,4 @@
-package BinaryTree;
+package structure_data.BinaryTree;
 
 public class Arboles {
 

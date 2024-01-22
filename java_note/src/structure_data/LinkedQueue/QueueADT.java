@@ -1,4 +1,4 @@
-package LinkedQueue;
+package structure_data.LinkedQueue;
 
 public interface QueueADT<T> {
     //Agrega un elemento al final de la cola

@@ -1,4 +1,4 @@
-package Evaluator;
+package structure_data.Evaluator;
 
 public interface StackADT<E>{
     

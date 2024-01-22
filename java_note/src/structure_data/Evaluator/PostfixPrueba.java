@@ -1,4 +1,4 @@
-package Evaluator;
+package structure_data.Evaluator;
 
 import java.io.BufferedReader;
 import java.io.IOException;

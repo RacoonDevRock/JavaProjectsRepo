@@ -1,4 +1,4 @@
-package DemoLinkedStack;
+package structure_data.DemoLinkedStack;
 
 public class PruebaLinked{
   public static void main (String[] args){

@@ -1,4 +1,4 @@
-package DemoLinkedStack;
+package structure_data.DemoLinkedStack;
 
 import java.util.EmptyStackException;
 import java.util.concurrent.ExecutionException;

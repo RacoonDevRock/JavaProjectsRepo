@@ -1,4 +1,4 @@
-package Evaluator;
+package structure_data.Evaluator;
 
 public class ArrayStack<E> implements StackADT<E>{
     private final int DEFAULT_CAPACITY = 100;

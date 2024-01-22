@@ -1,4 +1,4 @@
-package LinkedQueue;
+package structure_data.LinkedQueue;
 
 public class LinkedQueue<T> implements QueueADT<T> {
     
