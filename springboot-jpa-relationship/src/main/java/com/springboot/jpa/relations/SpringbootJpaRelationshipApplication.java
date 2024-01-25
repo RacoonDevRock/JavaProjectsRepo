@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @SpringBootApplication
 public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
@@ -32,7 +33,28 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        oneToManyInvoiceBidireccional();
+        oneToManyInvoiceBidireccionalFindById();
+    }
+
+    @Transactional
+    public void oneToManyInvoiceBidireccionalFindById() {
+        Optional<Client> optionalClient = clientRepository.findOne(1L);
+
+        optionalClient.ifPresent(clie -> {
+
+            Invoice invoice = new Invoice("rental", 435L);
+            Invoice invoice1 = new Invoice("san valentin", 545L);
+            Invoice invoice2 = new Invoice("Birthday", 987L);
+
+            clie.setInvoices(Set.of(invoice,invoice1,invoice2));
+            invoice.setClient(clie);
+            invoice1.setClient(clie);
+            invoice2.setClient(clie);
+            clientRepository.save(clie);
+
+            System.out.println(clie);
+        });
+
     }
 
     @Transactional
@@ -44,9 +66,9 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
         Invoice invoice1 = new Invoice("san valentin", 545L);
         Invoice invoice2 = new Invoice("Birthday", 987L);
 
-        client.setInvoices(Arrays.asList(invoice,invoice1,invoice2));
+        client.setInvoices(Set.of(invoice,invoice1,invoice2));
 
-        invoice1.setClient(client);
+        invoice.setClient(client);
         invoice1.setClient(client);
         invoice2.setClient(client);
 
@@ -62,14 +84,14 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
             Address address = new Address("Miraflores", 1014);
             Address address1 = new Address("Victor Larco", 345);
 
-            client.setAddresses(Arrays.asList(address, address1));
+            client.setAddresses(Set.of(address, address1));
 
             clientRepository.save(client);
 
             System.out.println(client);
 
 //            Optional<Client> optionalClient1 = clientRepository.findById(2L);
-            Optional<Client> optionalClient1 = clientRepository.findOne(2L); //este metodo ya no usa carga perezosa, sino trae los objetos enteros en una consulta
+            Optional<Client> optionalClient1 = clientRepository.findOneWithAddresses(2L); //este metodo ya no usa carga perezosa, sino trae los objetos enteros en una consulta
             optionalClient1.ifPresent(cli -> {
                 cli.getAddresses().remove(address1);
                 clientRepository.save(cli);
@@ -85,7 +107,7 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
         Address address = new Address("Miraflores", 1014);
         Address address1 = new Address("Victor Larco", 345);
 
-        client.setAddresses(List.of(address, address1));
+        client.setAddresses(Set.of(address, address1));
 
         clientRepository.save(client);
 
@@ -106,7 +128,7 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
             Address address = new Address("Miraflores", 1014);
             Address address1 = new Address("Victor Larco", 345);
 
-            client.setAddresses(Arrays.asList(address, address1));
+            client.setAddresses(Set.of(address,address1));
 
             clientRepository.save(client);
 
@@ -121,7 +143,7 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
         Address address = new Address("Miraflores", 1014);
         Address address1 = new Address("Victor Larco", 345);
 
-        client.setAddresses(List.of(address, address1));
+        client.setAddresses(Set.of(address, address1));
 
         clientRepository.save(client);
 
