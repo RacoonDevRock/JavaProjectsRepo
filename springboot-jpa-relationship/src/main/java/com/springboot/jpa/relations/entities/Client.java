@@ -29,8 +29,11 @@ public class Client {
             name = "table_clients_to_addresses",
             joinColumns = @JoinColumn(name = "id_client"),
             inverseJoinColumns = @JoinColumn(name = "id_addresses"),
-            uniqueConstraints =@UniqueConstraint(columnNames = {"id_addresses"}))
+            uniqueConstraints = @UniqueConstraint(columnNames = {"id_addresses"}))
     private List<Address> addresses;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "client")
+    private List<Invoice> invoices;
 
     public Client(String name, String lastName) {
         this();
