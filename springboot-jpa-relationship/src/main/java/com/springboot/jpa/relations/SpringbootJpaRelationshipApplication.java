@@ -33,20 +33,50 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        oneToManyInvoiceBidireccionalFindById();
+        removeInvoiceBidireccional();
     }
 
     @Transactional
-    public void oneToManyInvoiceBidireccionalFindById() {
+    public void removeInvoiceBidireccional() {
+        Client client = new Client("Frank", "Cortez");
+
+        Invoice invoice0 = new Invoice("rental", 435L);
+        Invoice invoice1 = new Invoice("san valentin", 545L);
+        Invoice invoice2 = new Invoice("Birthday", 987L);
+
+        client.setInvoices(Set.of(invoice0, invoice1, invoice2));
+        invoice0.setClient(client);
+        invoice1.setClient(client);
+        invoice2.setClient(client);
+        clientRepository.save(client);
+
+        System.out.println(client);
+
+        Optional<Client> optionalClientBD = clientRepository.findOne(3L);
+
+        optionalClientBD.ifPresent(clientDB -> {
+//            Invoice invoice4 = new Invoice("traka", 545L);
+//            invoice4.setId(1L);
+
+            Optional<Invoice> invoiceOptional = invoiceRepository.findById(2L);
+            invoiceOptional.ifPresent(invoice -> {
+                clientDB.removeInvoice(invoice);
+                clientRepository.save(clientDB);
+                System.out.println(clientDB);
+            });
+        });
+    }
+
+    @Transactional
+    public void removeInvoiceBidireccionalFindById() {
         Optional<Client> optionalClient = clientRepository.findOne(1L);
 
         optionalClient.ifPresent(clie -> {
-
             Invoice invoice = new Invoice("rental", 435L);
             Invoice invoice1 = new Invoice("san valentin", 545L);
             Invoice invoice2 = new Invoice("Birthday", 987L);
 
-            clie.setInvoices(Set.of(invoice,invoice1,invoice2));
+            clie.setInvoices(Set.of(invoice, invoice1, invoice2));
             invoice.setClient(clie);
             invoice1.setClient(clie);
             invoice2.setClient(clie);
@@ -55,6 +85,38 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
             System.out.println(clie);
         });
 
+        Optional<Client> optionalClientBD = clientRepository.findOne(1L);
+
+        optionalClientBD.ifPresent(clieDB -> {
+            Invoice invoice4 = new Invoice("san valentin", 545L);
+            invoice4.setId(1L);
+
+            Optional<Invoice> invoiceOptional = Optional.of(invoice4); //invoiceRepository.findById(2L);
+            invoiceOptional.ifPresent(invoice -> {
+                clieDB.removeInvoice(invoice);
+                clientRepository.save(clieDB);
+                System.out.println(clieDB);
+            });
+        });
+    }
+
+    @Transactional
+    public void oneToManyInvoiceBidireccionalFindById() {
+        Optional<Client> optionalClient = clientRepository.findOne(1L);
+
+        optionalClient.ifPresent(clie -> {
+            Invoice invoice = new Invoice("rental", 435L);
+            Invoice invoice1 = new Invoice("san valentin", 545L);
+            Invoice invoice2 = new Invoice("Birthday", 987L);
+
+            clie.setInvoices(Set.of(invoice, invoice1, invoice2));
+            invoice.setClient(clie);
+            invoice1.setClient(clie);
+            invoice2.setClient(clie);
+            clientRepository.save(clie);
+
+            System.out.println(clie);
+        });
     }
 
     @Transactional
@@ -66,7 +128,7 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
         Invoice invoice1 = new Invoice("san valentin", 545L);
         Invoice invoice2 = new Invoice("Birthday", 987L);
 
-        client.setInvoices(Set.of(invoice,invoice1,invoice2));
+        client.setInvoices(Set.of(invoice, invoice1, invoice2));
 
         invoice.setClient(client);
         invoice1.setClient(client);
@@ -128,7 +190,7 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
             Address address = new Address("Miraflores", 1014);
             Address address1 = new Address("Victor Larco", 345);
 
-            client.setAddresses(Set.of(address,address1));
+            client.setAddresses(Set.of(address, address1));
 
             clientRepository.save(client);
 
