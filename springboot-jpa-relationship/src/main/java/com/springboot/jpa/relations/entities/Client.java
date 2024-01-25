@@ -24,7 +24,7 @@ public class Client {
     private String lastName;
 
     //    @JoinColumn(name = "client_id")
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true/*, fetch = FetchType.EAGER*/) // 2da forma, para el metodo removeAddressesFindById()
     @JoinTable(
             name = "table_clients_to_addresses",
             joinColumns = @JoinColumn(name = "id_client"),
