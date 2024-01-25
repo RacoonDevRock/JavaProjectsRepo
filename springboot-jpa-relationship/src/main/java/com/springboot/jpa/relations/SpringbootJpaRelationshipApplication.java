@@ -32,7 +32,27 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        removeAddressFindById();
+        oneToManyInvoiceBidireccional();
+    }
+
+    @Transactional
+    public void oneToManyInvoiceBidireccional() {
+//        al ser bidireccional deben asignar a ambos lados, quien pertenece a quien
+        Client client = new Client("Frank", "Cortez");
+
+        Invoice invoice = new Invoice("rental", 435L);
+        Invoice invoice1 = new Invoice("san valentin", 545L);
+        Invoice invoice2 = new Invoice("Birthday", 987L);
+
+        client.setInvoices(Arrays.asList(invoice,invoice1,invoice2));
+
+        invoice1.setClient(client);
+        invoice1.setClient(client);
+        invoice2.setClient(client);
+
+        clientRepository.save(client);
+
+        System.out.println(client);
     }
 
     @Transactional

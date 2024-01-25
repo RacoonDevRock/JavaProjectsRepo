@@ -26,4 +26,13 @@ public class Invoice {
     @ManyToOne
     @JoinColumn(name = "client_id")   // personaliza el nombre de llave foranea en bd
     private Client client;
+
+    @Override
+    public String toString() {  // necesario parw evitar un bucle en la muestra del objeto, con la relacion con client
+        return "Invoice{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", total=" + total +
+                '}';
+    }
 }
