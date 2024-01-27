@@ -34,7 +34,72 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        manyToManyFind();
+        manyToManyRemove();
+    }
+
+    @Transactional
+    public void manyToManyRemove() {
+        Student student = new Student("Jano", "Pura");
+        Student student1 = new Student("Mero", "Guero");
+
+        Course course = new Course("Curso spring", "Andre");
+        Course course1 = new Course("Curso web", "Nicolas");
+
+        student.setCourses(Set.of(course, course1));
+        student1.setCourses(Set.of(course1));
+
+        studentRepository.saveAll(Set.of(student, student1));
+
+        System.out.println(student);
+        System.out.println(student1);
+
+        Optional<Student> studentOptionalDB = studentRepository.findOneWithCourses(4L);
+        if (studentOptionalDB.isPresent()) {
+            Student studentDB = studentOptionalDB.get();
+            Optional<Course> courseOptional = courseRepository.findById(3L);
+
+            if (courseOptional.isPresent()) {
+                Course courseDB = courseOptional.get();
+                studentDB.getCourses().remove(courseDB);
+
+                studentRepository.save(studentDB);
+                System.out.println(studentDB);
+            }
+        }
+    }
+
+    @Transactional
+    public void manyToManyRemoveFind() {
+        Optional<Student> studentOptional = studentRepository.findById(1L);
+        Optional<Student> studentOptional1 = studentRepository.findById(2L);
+
+        Student student = studentOptional.get();
+        Student student1 = studentOptional1.get();
+
+        Course course = courseRepository.findById(1L).get();
+        Course course1 = courseRepository.findById(2L).get();
+
+        student.setCourses(Set.of(course, course1));
+        student1.setCourses(Set.of(course1));
+
+        studentRepository.saveAll(Set.of(student, student1));
+
+        System.out.println(student);
+        System.out.println(student1);
+
+        Optional<Student> studentOptionalDB = studentRepository.findOneWithCourses(1L);
+        if (studentOptionalDB.isPresent()) {
+            Student studentDB = studentOptionalDB.get();
+            Optional<Course> courseOptional = courseRepository.findById(2L);
+
+            if (courseOptional.isPresent()) {
+                Course courseDB = courseOptional.get();
+                studentDB.getCourses().remove(courseDB);
+
+                studentRepository.save(studentDB);
+                System.out.println(studentDB);
+            }
+        }
     }
 
     @Transactional
@@ -48,10 +113,10 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
         Course course = courseRepository.findById(1L).get();
         Course course1 = courseRepository.findById(2L).get();
 
-        student.setCourses(Set.of(course,course1));
+        student.setCourses(Set.of(course, course1));
         student1.setCourses(Set.of(course1));
 
-        studentRepository.saveAll(Set.of(student,student1));
+        studentRepository.saveAll(Set.of(student, student1));
 
         System.out.println(student);
         System.out.println(student1);
@@ -59,16 +124,16 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
 
     @Transactional
     public void manyToMany() {
-        Student student = new Student("Jano","Pura");
-        Student student1 = new Student("Mero","Guero");
+        Student student = new Student("Jano", "Pura");
+        Student student1 = new Student("Mero", "Guero");
 
-        Course course = new Course("Curso spring","Andre");
-        Course course1 = new Course("Curso web","Nicolas");
+        Course course = new Course("Curso spring", "Andre");
+        Course course1 = new Course("Curso web", "Nicolas");
 
-        student.setCourses(Set.of(course,course1));
+        student.setCourses(Set.of(course, course1));
         student1.setCourses(Set.of(course1));
 
-        studentRepository.saveAll(Set.of(student,student1));
+        studentRepository.saveAll(Set.of(student, student1));
 
         System.out.println(student);
         System.out.println(student1);
