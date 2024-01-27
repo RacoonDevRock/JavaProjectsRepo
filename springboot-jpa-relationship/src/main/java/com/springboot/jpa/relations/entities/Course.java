@@ -6,12 +6,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "courses")
 public class Course {
@@ -21,6 +22,13 @@ public class Course {
     private Long id;
     private String name;
     private String instructor;
+
+    @ManyToMany(mappedBy = "courses")
+    private Set<Student> students;
+
+    public Course() {
+        this.students = new HashSet<>();
+    }
 
     public Course(String name, String instructor) {
         this.name = name;
