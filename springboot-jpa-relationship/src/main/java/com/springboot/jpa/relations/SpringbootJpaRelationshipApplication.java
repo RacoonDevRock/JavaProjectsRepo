@@ -2,7 +2,9 @@ package com.springboot.jpa.relations;
 
 import com.springboot.jpa.relations.entities.Address;
 import com.springboot.jpa.relations.entities.Client;
+import com.springboot.jpa.relations.entities.ClientDetails;
 import com.springboot.jpa.relations.entities.Invoice;
+import com.springboot.jpa.relations.repositories.ClientDetailsRepository;
 import com.springboot.jpa.relations.repositories.ClientRepository;
 import com.springboot.jpa.relations.repositories.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +13,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -20,11 +20,13 @@ import java.util.Set;
 public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
     private final ClientRepository clientRepository;
     private final InvoiceRepository invoiceRepository;
+    private final ClientDetailsRepository clientDetailsRepository;
 
     @Autowired
-    public SpringbootJpaRelationshipApplication(ClientRepository clientRepository, InvoiceRepository invoiceRepository) {
+    public SpringbootJpaRelationshipApplication(ClientRepository clientRepository, InvoiceRepository invoiceRepository, ClientDetailsRepository clientDetailsRepository) {
         this.clientRepository = clientRepository;
         this.invoiceRepository = invoiceRepository;
+        this.clientDetailsRepository = clientDetailsRepository;
     }
 
     public static void main(String[] args) {
@@ -33,7 +35,33 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        removeInvoiceBidireccional();
+        oneToOneFindById();
+    }
+
+    @Transactional
+    public void oneToOneFindById() {
+        ClientDetails clientDetails = new ClientDetails(true, 300);
+        clientDetailsRepository.save(clientDetails);
+
+        Optional<Client> optionalClient = clientRepository.findOne(2L);
+        optionalClient.ifPresent(client -> {
+            client.setClientDetails(clientDetails);
+            clientRepository.save(client);
+
+            System.out.println(client);
+        });
+    }
+
+    @Transactional
+    public void oneToOne() {
+        ClientDetails clientDetails = new ClientDetails(true, 300);
+        clientDetailsRepository.save(clientDetails);
+
+        Client client = new Client("Wagner", "Sanchez");
+        client.setClientDetails(clientDetails);
+        clientRepository.save(client);
+
+        System.out.println(client);
     }
 
     @Transactional

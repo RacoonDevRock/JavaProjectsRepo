@@ -33,6 +33,10 @@ public class Client {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "client")
     private Set<Invoice> invoices;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_client_details")
+    private ClientDetails clientDetails;
+
     public Client(String name, String lastName) {
         this();
         this.name = name;
@@ -50,8 +54,9 @@ public class Client {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
-//                ", addresses=" + addresses +
+                ", addresses=" + addresses +
                 ", invoices=" + invoices +
+                ", clientDetails=" + clientDetails +
                 '}';
     }
 }
