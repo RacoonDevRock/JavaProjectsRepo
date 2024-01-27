@@ -34,7 +34,27 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        manyToMany();
+        manyToManyFind();
+    }
+
+    @Transactional
+    public void manyToManyFind() {
+        Optional<Student> studentOptional = studentRepository.findById(1L);
+        Optional<Student> studentOptional1 = studentRepository.findById(2L);
+
+        Student student = studentOptional.get();
+        Student student1 = studentOptional1.get();
+
+        Course course = courseRepository.findById(1L).get();
+        Course course1 = courseRepository.findById(2L).get();
+
+        student.setCourses(Set.of(course,course1));
+        student1.setCourses(Set.of(course1));
+
+        studentRepository.saveAll(Set.of(student,student1));
+
+        System.out.println(student);
+        System.out.println(student1);
     }
 
     @Transactional
@@ -52,7 +72,6 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
 
         System.out.println(student);
         System.out.println(student1);
-
     }
 
     @Transactional
