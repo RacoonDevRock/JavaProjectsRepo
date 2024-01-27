@@ -3,7 +3,8 @@ package com.springboot.jpa.relations.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -16,11 +17,21 @@ public class ClientDetails {
     private boolean premium;
     private Integer points;
 
-//    @OneToOne
-//    private Client client;
+    @OneToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
 
     public ClientDetails(boolean premium, Integer points) {
         this.premium = premium;
         this.points = points;
+    }
+
+    @Override
+    public String toString() {
+        return "ClientDetails{" +
+                "id=" + id +
+                ", premium=" + premium +
+                ", points=" + points +
+                '}';
     }
 }
