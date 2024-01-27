@@ -1,12 +1,7 @@
 package com.springboot.jpa.relations;
 
-import com.springboot.jpa.relations.entities.Address;
-import com.springboot.jpa.relations.entities.Client;
-import com.springboot.jpa.relations.entities.ClientDetails;
-import com.springboot.jpa.relations.entities.Invoice;
-import com.springboot.jpa.relations.repositories.ClientDetailsRepository;
-import com.springboot.jpa.relations.repositories.ClientRepository;
-import com.springboot.jpa.relations.repositories.InvoiceRepository;
+import com.springboot.jpa.relations.entities.*;
+import com.springboot.jpa.relations.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,12 +16,16 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
     private final ClientRepository clientRepository;
     private final InvoiceRepository invoiceRepository;
     private final ClientDetailsRepository clientDetailsRepository;
+    private final StudentRepository studentRepository;
+    private final CourseRepository courseRepository;
 
     @Autowired
-    public SpringbootJpaRelationshipApplication(ClientRepository clientRepository, InvoiceRepository invoiceRepository, ClientDetailsRepository clientDetailsRepository) {
+    public SpringbootJpaRelationshipApplication(ClientRepository clientRepository, InvoiceRepository invoiceRepository, ClientDetailsRepository clientDetailsRepository, StudentRepository studentRepository, CourseRepository courseRepository) {
         this.clientRepository = clientRepository;
         this.invoiceRepository = invoiceRepository;
         this.clientDetailsRepository = clientDetailsRepository;
+        this.studentRepository = studentRepository;
+        this.courseRepository = courseRepository;
     }
 
     public static void main(String[] args) {
@@ -35,7 +34,25 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        oneToOneBidireccionalFindById();
+        manyToMany();
+    }
+
+    @Transactional
+    public void manyToMany() {
+        Student student = new Student("Jano","Pura");
+        Student student1 = new Student("Mero","Guero");
+
+        Course course = new Course("Curso spring","Andre");
+        Course course1 = new Course("Curso web","Nicolas");
+
+        student.setCourses(Set.of(course,course1));
+        student1.setCourses(Set.of(course1));
+
+        studentRepository.saveAll(Set.of(student,student1));
+
+        System.out.println(student);
+        System.out.println(student1);
+
     }
 
     @Transactional
