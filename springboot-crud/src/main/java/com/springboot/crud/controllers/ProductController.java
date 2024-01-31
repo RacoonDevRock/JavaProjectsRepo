@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,14 +21,15 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ProductController {
     private final IProductService productService;
-    private final ProductValidation productValidation;
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public List<Product> listAll() {
         return productService.findAll();
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<?> viewProduct(@PathVariable Long id) {
         Optional<Product> productOptional = productService.findById(id);
         if (productOptional.isPresent()) {
@@ -37,6 +39,7 @@ public class ProductController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> create(@Valid @RequestBody Product product, BindingResult bindingResult) {
 //        productValidation.validate(product,bindingResult);
         if (bindingResult.hasFieldErrors()) {
@@ -46,6 +49,7 @@ public class ProductController {
     }
 
     @PutMapping("/update/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> update(@Valid @RequestBody Product productUpdate, BindingResult bindingResult, @PathVariable Long id) {
 //        productValidation.validate(productUpdate,bindingResult);
         if (bindingResult.hasFieldErrors()) {
@@ -59,6 +63,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         Optional<Product> productOptional = productService.delete(id);
         if (productOptional.isPresent()) {
