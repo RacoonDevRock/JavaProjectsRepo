@@ -1,7 +1,7 @@
 package com.springboot.crud.services.impl;
 
 import com.springboot.crud.entities.Role;
-import com.springboot.crud.entities.User;
+import com.springboot.crud.entities.UserEntity;
 import com.springboot.crud.repositories.RoleRepository;
 import com.springboot.crud.repositories.UserRepository;
 import com.springboot.crud.services.IUserService;
@@ -23,26 +23,31 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<User> findAll() {
-        return (List<User>) userRepository.findAll();
+    public List<UserEntity> findAll() {
+        return (List<UserEntity>) userRepository.findAll();
     }
 
     @Override
     @Transactional
-    public User save(User user) {
+    public UserEntity save(UserEntity userEntity) {
         Optional<Role> optionalRoleUser = roleRepository.findByName("ROLE_USER");
         List<Role> roles = new ArrayList<>();
 
         optionalRoleUser.ifPresent(roles::add);
 
-        if (user.isAdmin()) {
+        if (userEntity.isAdmin()) {
             Optional<Role> optionalRoleAdmin = roleRepository.findByName("ROLE_ADMIN");
             optionalRoleAdmin.ifPresent(roles::add);
         }
 
-        user.setRoles(roles);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userEntity.setRoles(roles);
+        userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
 
-        return userRepository.save(user);
+        return userRepository.save(userEntity);
+    }
+
+    @Override
+    public boolean existsByUsername(String username) {
+        return userRepository.existsByUsername(username);
     }
 }
