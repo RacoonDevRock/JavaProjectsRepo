@@ -1,3 +1,4 @@
+import axios from "axios";
 
 const initProduct = [
     {
@@ -14,6 +15,54 @@ const initProduct = [
     }
 ];
 
+const base_url = 'http://localhost:8080/products';
+
 export const listProduct = () => {
     return initProduct;
+};
+
+export const findAll = async () => {
+    try {
+        const response = await axios.get(base_url);
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+    return null;
+};
+
+export const create = async ({ name, description, price }) => {
+    try {
+        const response = await axios.post(base_url, {
+            name,
+            description,
+            price,
+        });
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+    return undefined;
+};
+
+export const update = async ({ id, name, description, price }) => {
+    try {
+        const response = await axios.put(`${base_url}/${id}`, {
+            name,
+            description,
+            price,
+        });
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+    return undefined;
+};
+
+export const remove = async (id) => {
+    try {
+        await axios.delete(`${base_url}/${id}`);
+    } catch (error) {
+        console.log(error);
+    }
 };

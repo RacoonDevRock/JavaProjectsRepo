@@ -11,7 +11,7 @@ const initialDataForm = {
 export const ProductForm = ({ productSelected, handlerAdd }) => {
 
     const [form, setForm] = useState(initialDataForm);
-    const { name, description, price } = form;
+    const { id, name, description, price } = form;
 
     useEffect(() => {
         setForm(productSelected);
@@ -32,23 +32,23 @@ export const ProductForm = ({ productSelected, handlerAdd }) => {
                 setForm(initialDataForm);
             })}>
                 <div>
-                    <input style={{ 'marginBottom': '4px' }} type="text" placeholder="Name" name="name" value={name} onChange={(event => setForm({
+                    <input className="form-control my-3 w-75" type="text" placeholder="Name" name="name" value={name} onChange={(event => setForm({
                         ...form, name: event.target.value
                     }))} />
                 </div>
                 <div>
-                    <input style={{ 'marginBottom': '4px' }} type="text" placeholder="Description" name="description" value={description} onChange={(event => setForm({
+                    <input className="form-control my-3 w-75" type="text" placeholder="Description" name="description" value={description} onChange={(event => setForm({
                         ...form, description: event.target.value
                     }))} />
                 </div>
                 <div>
-                    <input style={{ 'marginBottom': '4px' }} type="text" placeholder="Price" name="price" value={price} onChange={(event => setForm({
+                    <input className="form-control my-3 w-75" type="text" placeholder="Price" name="price" value={price} onChange={(event => setForm({
                         ...form, price: event.target.value
                     }))} />
                 </div>
                 <div>
-                    <button type="submit">
-                        Save
+                    <button type="submit" className="btn btn-primary">
+                        {id > 0 ? 'update' : 'create'}
                     </button>
                 </div>
             </form>
