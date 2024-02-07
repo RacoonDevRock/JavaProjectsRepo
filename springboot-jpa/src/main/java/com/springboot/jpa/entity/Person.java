@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,8 +28,19 @@ public class Person {
     @Column(name = "programming_language")
     String programmingLanguage;
 
-    public Person(String name, String lastName) {
+    @Embedded
+    private Audit audit = new Audit();
+
+    public Person(String name, String lastName, String programmingLanguage) {
         this.name = name;
         this.lastName = lastName;
+        this.programmingLanguage = programmingLanguage;
+    }
+
+    public Person(Long personId, String name, String lastName, String programmingLanguage) {
+        this.personId = personId;
+        this.name = name;
+        this.lastName = lastName;
+        this.programmingLanguage = programmingLanguage;
     }
 }
