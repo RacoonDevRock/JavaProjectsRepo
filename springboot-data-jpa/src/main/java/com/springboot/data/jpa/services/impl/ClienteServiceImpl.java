@@ -4,6 +4,8 @@ import com.springboot.data.jpa.models.dao.IClienteDao;
 import com.springboot.data.jpa.models.entity.Cliente;
 import com.springboot.data.jpa.services.IClienteService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +20,12 @@ public class ClienteServiceImpl implements IClienteService {
     @Transactional(readOnly = true)
     public List<Cliente> findAll() {
         return (List<Cliente>) clienteDao.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public Page<Cliente> findAll(Pageable pageable) {
+        return clienteDao.findAll(pageable);
     }
 
     @Override
