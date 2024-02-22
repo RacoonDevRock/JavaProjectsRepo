@@ -39,4 +39,6 @@ public class Cliente implements Serializable {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date createAt;
+
+    private String foto;
 }
