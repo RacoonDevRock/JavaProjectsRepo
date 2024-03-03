@@ -1,5 +1,6 @@
 package poo.upao.TeatroBoleteria;
 
+@SuppressWarnings("unused")
 public class Boleteria {
 
     private static final int NUM_CLIENTES = 100;
@@ -15,7 +16,7 @@ public class Boleteria {
             for(int j = 0;  j < NUM_CLIENTES; j ++){
             
               
-                cola.enqueue(new Cliente(j*15));
+                cola.enqueue(new Cliente(j, 15));
             
             
             

@@ -2,6 +2,7 @@ package poo.upao.Farmacia;
 
 import java.util.*;
 
+@SuppressWarnings("rawtypes")
 public class Inventario implements Comparable{
     
     private HashSet<Producto>hst;

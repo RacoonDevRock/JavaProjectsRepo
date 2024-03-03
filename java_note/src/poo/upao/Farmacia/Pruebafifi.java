@@ -5,6 +5,7 @@ import java.util.*;
 
 public class Pruebafifi {
 
+  static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
   static Inventario hst = new Inventario();
   static Inventario tsh = new Inventario();
   static Producto p;
@@ -12,7 +13,6 @@ public class Pruebafifi {
   static Venta v;
 
   public static void main(String[] args) throws IOException {
-    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     // VARIABLES
     String rpta1, rpta2, rpta3;
@@ -50,118 +50,121 @@ public class Pruebafifi {
     tsh.agregarVent(v2);
     tsh.agregarVent(v3);
 
-
     System.out.println("\n¿Desea listar los productos vendidos?");
-      System.out.println("SI          NO");
-      do {
-        System.out.print("Respuesta: ");
-        rpta2 = br.readLine().toUpperCase();
-      } while (!rpta2.equals("SI") && (!rpta2.equals("NO")));
+    System.out.println("SI          NO");
+    do {
+      System.out.print("Respuesta: ");
+      rpta2 = br.readLine().toUpperCase();
+    } while (!rpta2.equals("SI") && (!rpta2.equals("NO")));
 
-      if (rpta2.equals("SI")) {
+    if (rpta2.equals("SI")) {
       System.out.println("\n-----INVENTARIO-----");
       System.out.println(tsh.listarVent());
     }
 
     System.out.println("\n¿Desea realizar algún cambio?");
-        System.out.println("SI          NO");
-        do{
-          System.out.print("Respuesta: ");
-          rpta3=br.readLine().toUpperCase();
-        }while(!rpta3.equals("SI") && (!rpta3.equals("NO")));
+    System.out.println("SI          NO");
+    do {
+      System.out.print("Respuesta: ");
+      rpta3 = br.readLine().toUpperCase();
+    } while (!rpta3.equals("SI") && (!rpta3.equals("NO")));
 
-        if(rpta3.equals("SI")){
+    if (rpta3.equals("SI")) {
 
-          do{ 
-            opc=this.menu();  
-            switch(opc) {
-                case 1: leer();
-                        Agregar(N);
-                        break;
-                case 2: Consultar();
-                        break;
-                case 3: Eliminar();
-                        break;
-                case 4: Cerrar();
-                        break;
-              }
-          }while(opc!=4);
+      do {
+        opc = menu();
+        switch (opc) {
+          case 1:
+            int N = leer();
+            Agregar(N);
+            break;
+          case 2:
+            Consultar();
+            break;
+          case 3:
+            Eliminar();
+            break;
+          case 4:
+            Cerrar();
+            break;
         }
-        else{
-          System.out.println("----- Sesión finalizada -----");
-        }
+      } while (opc != 4);
+    } else {
+      System.out.println("----- Sesión finalizada -----");
+    }
+  }
 
-        static int menu()throws IOException{
-        int opc;
-        do{ 
-            System.out.println("\n*****MENU OPCIONES*****");
-            System.out.println("1. Agregar dato");
-            System.out.println("2. Consultar dato");
-            System.out.println("3. Eliminar dato");
-            System.out.println("4. Cerrar");     
-            System.out.print("Ingrese la opcion:");
-            opc=Integer.parseInt(br.readLine());
-        }while(opc<1 || opc >4);
-        return opc;
-       }
+  public static int menu() throws IOException {
+    int opc;
+    do {
+      System.out.println("\n*****MENU OPCIONES*****");
+      System.out.println("1. Agregar dato");
+      System.out.println("2. Consultar dato");
+      System.out.println("3. Eliminar dato");
+      System.out.println("4. Cerrar");
+      System.out.print("Ingrese la opcion:");
+      opc = Integer.parseInt(br.readLine());
+    } while (opc < 1 || opc > 4);
+    return opc;
+  }
 
-       static int leer() throws IOException{
-        int N;
-        do{        
-          System.out.println("Ingrese N° de objetos: ");
-          N=Integer.parseInt(br.readLine());
-        }while(N<1||N>10);
+  public static int leer() throws IOException {
+    int N;
+    do {
+      System.out.println("Ingrese N° de objetos: ");
+      N = Integer.parseInt(br.readLine());
+    } while (N < 1 || N > 10);
 
-        return N;
-      }
+    return N;
+  }
 
-      static int Agregar(int N)throws IOException{
-        String id, nom_prod, contenido, lab;
-        int cant_tot, i;
-        double precio;
+  public static int Agregar(int N) throws IOException {
+    String id, nom_prod, contenido, lab;
+    int cant_tot, i;
+    double precio;
 
-        System.out.println("Ingreso de Datos");
+    System.out.println("Ingreso de Datos");
 
-        for(i=0;i<n;i++);
-          System.out.print("ID: ");
-          id=br.readLine();
-          System.out.print("Nombre: ");
-          nom_prod=br.readLine().toUpperCase();
-          System.out.print("Contenido: ");
-          contenido=br.readLine().toUpperCase();
-          System.out.print("Laboratorio/Marca: ");
-          lab=br.readLine().toUpperCase();
-          System.out.print("Cantidad/Stock: ");
-          cant_tot=Integer.parseInt(br.readLine());
-          System.out.print("Precio: ");
-          precio=Double.parseDouble(br.readLine());
+    for (i = 0; i < n; i++)
+      ;
+    System.out.print("ID: ");
+    id = br.readLine();
+    System.out.print("Nombre: ");
+    nom_prod = br.readLine().toUpperCase();
+    System.out.print("Contenido: ");
+    contenido = br.readLine().toUpperCase();
+    System.out.print("Laboratorio/Marca: ");
+    lab = br.readLine().toUpperCase();
+    System.out.print("Cantidad/Stock: ");
+    cant_tot = Integer.parseInt(br.readLine());
+    System.out.print("Precio: ");
+    precio = Double.parseDouble(br.readLine());
 
-        p = new Producto(id, nom_prod, contenido, lab, cant_tot, precio);
-        hst.agregarPro(p);
-      }
+    p = new Producto(id, nom_prod, contenido, lab, cant_tot, precio);
+    hst.agregarPro(p);
+  }
 
-        static void Consultar()throws IOException{
-          String N;
-          System.out.println("Busqueda de producto por su nombre");
-          System.out.println("Ingrese el nombre: ");
-          N=br.readLine();
+  public static void Consultar() throws IOException {
+    String N;
+    System.out.println("Busqueda de producto por su nombre");
+    System.out.println("Ingrese el nombre: ");
+    N = br.readLine();
 
-          System.out.println(Producto.Buscar(N));
+    System.out.println(Producto.Buscar(N));
 
-          System.out.println(p.toString());
-        }
-      
-       static void Eliminar()throws IOException{
-          String N2;
-          System.out.println("Eliminar producto");
-          System.out.println("Ingrese el nombre del producto a eliminar: ");
-          N2=br.readLine();
+    System.out.println(p.toString());
+  }
 
-          System.out.println(Inventario.eliminarPro(N2));
-        }
+  public static void Eliminar() throws IOException {
+    String N2;
+    System.out.println("Eliminar producto");
+    System.out.println("Ingrese el nombre del producto a eliminar: ");
+    N2 = br.readLine();
 
-       public static void Cerrar() throws IOException {
-         System.out.println("Gracias por usar este programa, iniciando autodestrucción en 3...2...1...");
-       }
+    System.out.println(Inventario.eliminarPro(N2));
+  }
+
+  public static void Cerrar() throws IOException {
+    System.out.println("Gracias por usar este programa, iniciando autodestrucción en 3...2...1...");
   }
 }

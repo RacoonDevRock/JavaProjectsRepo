@@ -3,6 +3,7 @@ package poo.upao.PedidosDelivery;
 //Llamamos a las librerias y estas agrupan al conjunto de clases e interfaces necesarios para procesar los archivos. 
 import java.util.*;
 //Comparable contiene una método abstracta compareTo el cual permite ordenar un objeto según un atributo especificado (String, Double, Integer, Int).
+@SuppressWarnings("rawtypes")
 public class Registro implements Comparable{
 
   //HashSet contiene un conjunto de objetos, pero de una manera que le permite determinar fácil y rápidamente si un objeto ya está en el conjunto o no.

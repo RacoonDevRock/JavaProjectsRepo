@@ -1,5 +1,6 @@
 package poo.upao.Farmacia;
 
+@SuppressWarnings("rawtypes")
 public class Producto implements Comparable {
 
   private String id;

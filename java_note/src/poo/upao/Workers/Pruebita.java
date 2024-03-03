@@ -1,5 +1,6 @@
 package poo.upao.Workers;
 
+@SuppressWarnings("unused")
 public class Pruebita{
   public static void main(String[] args){
 
