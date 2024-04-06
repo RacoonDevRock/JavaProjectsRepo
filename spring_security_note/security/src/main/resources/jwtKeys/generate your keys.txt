@@ -1,7 +1,0 @@
-Generate your own private and public keys with
-
-Private key:
-openssl genrsa -out private_key.pem 2048
-
-Public key:
-openssl rsa -pubout -in private_key.pem -out public_key.pem
